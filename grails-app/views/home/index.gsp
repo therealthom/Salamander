@@ -48,9 +48,11 @@
         var latlng = new google.maps.LatLng(data.coords.latitude, data.coords.longitude);
         alert(latlng)
       }*/
+      var geocoder;
       
       jQuery(document).ready(function() {
         jQuery("#btnGeo").click(function() {
+          geocoder = new google.maps.Geocoder();
           if (navigator.geolocation) {
             navigator.geolocation.getCurrentPosition( 
 		function (position) {  
@@ -58,8 +60,19 @@
                   //alert ("latitude: "+position.coords.latitude + ", longitude: " + position.coords.longitude);
                   // To see everything available in the position.coords array:
                   //for (key in position.coords) {alert(key)} 
-                  mapServiceProvider(position.coords.latitude, position.coords.longitude, position.coords.accuracy); 
-		}, 
+                  // Show map
+                  //mapServiceProvider(position.coords.latitude, position.coords.longitude);
+                  var latlng = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
+                  geocoder.geocode({'latLng': latlng}, function(results, status) {
+                    if (status == google.maps.GeocoderStatus.OK) {
+                      if (results[1]) {                        
+                        jQuery("#myAddress").html(results[1].formatted_address);
+                      }
+                    } else {
+                      alert("Geocoder failed due to: " + status);
+                    }
+                  });
+                }, 
 		// next function is the error callback
 		function (error) {
                   switch(error.code) {
@@ -138,8 +151,9 @@
 
     <div class="container">
       
+      <br/><br/><br/><br/><br/><br/>
       <div class="row">        
-        <div class="hero-unit-mod" style="text-align:center" id="map" name="map">
+        <div class="span4 offset4" style="text-align:center" id="map" name="map">
             <img alt="Salamander" src="${resource(dir: 'images', file: 'salamander.jpeg')}" width="200px" height="100px"/>
         </div>
       </div>
@@ -167,6 +181,9 @@
           </div>
 
         </g:form>
+      </div>
+      <div class="row">
+        <div id="myAddress" style="text-align: center"></div>
       </div>
     </div> <!-- /container -->
 
