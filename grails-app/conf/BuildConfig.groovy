@@ -45,5 +45,6 @@ grails.project.dependency.resolution = {
         
         runtime ':twitter-bootstrap:2.0.0.16'
         runtime ':fields:1.0.1'
+        compile ':spring-security-core:1.2.7.2'
     }
 }
