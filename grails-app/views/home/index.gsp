@@ -55,8 +55,6 @@
       var myAddress;
       jQuery(document).ready(function() {
         
-        jQuery('#myModal').modal('toggle');
-        
         jQuery('#showMyAddress').click(function() {
           mapServiceProvider(myPosition.coords.latitude, myPosition.coords.longitude);
           jQuery("#myAddress").html(myAddress);
@@ -177,17 +175,14 @@
                 <g:textField class="input-large search-query span4" name="txtSearch" placeholder="¿Qué necesitas?" />                                                
             </div>        
           </div>
-
           <div class="row ">
             &nbsp;
           </div>
-
           <div class="row ">
             <div class="span12" style="text-align:center">
               <g:submitButton class="btn-primary span2" name="btnSearch" value="Buscar"/>
             </div>
           </div>
-
         </g:form>
       </div>
       <div class="row">        
@@ -196,7 +191,8 @@
         </div>        
       </div>
       
-      <div class="modal hide fade" id="myModal">
+      <!-- Modal que muestra la ubicacion detectada en el mapa -->
+      <div id="myModal" class="modal hide fade" style="display: none;">
         <div class="modal-header">
           <a class="close" data-dismiss="modal">×</a>
           <h3>¿En dónde estoy?</h3>
@@ -206,11 +202,9 @@
             &nbsp;
           </div>
         </div>
-        <div class="modal-footer" id="myAddress" style="text-align: center">
-          
-        </div>
+        <div class="modal-footer" id="myAddress" style="text-align: center"></div>
       </div>
-      
+      <!-- Fin del modal -->
     </div> <!-- /container -->
     
   </body>
