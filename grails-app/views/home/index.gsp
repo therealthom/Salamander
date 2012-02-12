@@ -27,6 +27,7 @@
     <link rel="apple-touch-icon" href="images/apple-touch-icon.png">
     
     <script type="text/javascript" src="/salamander/static/plugins/jquery-1.7.1/js/jquery/jquery-1.7.1.min.js"></script>
+    <script type="text/javascript" src="${resource(dir: 'js', file: 'bootstrap.min.js')}"></script>
     <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>
     
     
@@ -48,25 +49,32 @@
         var latlng = new google.maps.LatLng(data.coords.latitude, data.coords.longitude);
         alert(latlng)
       }*/
+  
       var geocoder;
-      
+      var myPosition;
+      var myAddress;
       jQuery(document).ready(function() {
-        jQuery("#btnGeo").click(function() {
+        
+        jQuery('#myModal').modal('toggle');
+        
+        jQuery('#showMyAddress').click(function() {
+          mapServiceProvider(myPosition.coords.latitude, myPosition.coords.longitude);
+          jQuery("#myAddress").html(myAddress);
+        });
+        
+        //Código para geolocalizacion
+        jQuery("#btnGeo").click(function() {          
           geocoder = new google.maps.Geocoder();
           if (navigator.geolocation) {
             navigator.geolocation.getCurrentPosition( 
 		function (position) {  
-                  // Did we get the position correctly?
-                  //alert ("latitude: "+position.coords.latitude + ", longitude: " + position.coords.longitude);
-                  // To see everything available in the position.coords array:
-                  //for (key in position.coords) {alert(key)} 
-                  // Show map
-                  //mapServiceProvider(position.coords.latitude, position.coords.longitude);
-                  var latlng = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
+                  myPosition = position;
+                  var latlng = new google.maps.LatLng(myPosition.coords.latitude, myPosition.coords.longitude);
                   geocoder.geocode({'latLng': latlng}, function(results, status) {
                     if (status == google.maps.GeocoderStatus.OK) {
-                      if (results[1]) {                        
-                        jQuery("#myAddress").html(results[1].formatted_address);
+                      if (results[1]) {    
+                        myAddress = results[1].formatted_address;
+                        jQuery("#showMyAddress").html(myAddress);
                       }
                     } else {
                       alert("Geocoder failed due to: " + status);
@@ -115,7 +123,7 @@
         var marker = new google.maps.Marker({
             position: latlng, 
             map: map, 
-            title:"¡Aquí estás!"
+            title:"¡Aquí!"
         });
       }
     </script>
@@ -153,7 +161,7 @@
       
       <br/><br/><br/><br/><br/><br/>
       <div class="row">        
-        <div class="span4 offset4" style="text-align:center" id="map" name="map">
+        <div class="span4 offset4" style="text-align:center">
             <img alt="Salamander" src="${resource(dir: 'images', file: 'salamander.jpeg')}" width="200px" height="100px"/>
         </div>
       </div>
@@ -182,10 +190,28 @@
 
         </g:form>
       </div>
-      <div class="row">
-        <div id="myAddress" style="text-align: center"></div>
+      <div class="row">        
+        <div class="span12" style="text-align:center">
+          <a data-toggle="modal" href="#myModal" id="showMyAddress">Sin ubicación</a>
+        </div>        
       </div>
+      
+      <div class="modal hide fade" id="myModal">
+        <div class="modal-header">
+          <a class="close" data-dismiss="modal">×</a>
+          <h3>¿En dónde estoy?</h3>
+        </div>
+        <div class="modal-body">
+          <div class="hero-unit-mod" id="map">
+            &nbsp;
+          </div>
+        </div>
+        <div class="modal-footer" id="myAddress" style="text-align: center">
+          
+        </div>
+      </div>
+      
     </div> <!-- /container -->
-
+    
   </body>
 </html>
