@@ -2,6 +2,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
+    <meta name="layout" content="bootstrap"/>
     <meta charset="utf-8">
     <title>Proyecto Salamander</title>
     <meta name="description" content="">
@@ -13,7 +14,7 @@
     <![endif]-->
 
     <!-- Le styles -->
-    <link rel="stylesheet" href="${resource(dir: 'css', file: 'bootstrap.min.css')}" type="text/css">
+    
     <style type="text/css">
       body {
         padding-top: 60px;
@@ -25,7 +26,7 @@
     <!-- Le fav and touch icons -->
     <link rel="shortcut icon" href="images/favicon.ico">
     <link rel="apple-touch-icon" href="images/apple-touch-icon.png">
-    
+        
     <script type="text/javascript" src="/salamander/static/plugins/jquery-1.7.1/js/jquery/jquery-1.7.1.min.js"></script>
     <script type="text/javascript" src="${resource(dir: 'js', file: 'bootstrap.min.js')}"></script>
     <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>
@@ -56,8 +57,8 @@
       jQuery(document).ready(function() {
         
         jQuery('#showMyAddress').click(function() {
-          mapServiceProvider(myPosition.coords.latitude, myPosition.coords.longitude);
-          jQuery("#myAddress").html(myAddress);
+            mapServiceProvider(myPosition.coords.latitude, myPosition.coords.longitude);
+            jQuery("#myAddress").html(myAddress);
         });
         
         //Código para geolocalizacion
@@ -128,36 +129,23 @@
     
   </head>
 
-  <body>
-    
-    <div class="navbar navbar-fixed-top">
-      <div class="navbar-inner">
-        <div class="container">
-          <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </a>
-          <a class="brand" href="#">Proyecto Salamander</a>
-          <div class="nav-collapse">
-            <ul class="nav">
-              <li class="active"><a href="#">Inicio</a></li>
-              <li><a href="#about">Acerca de</a></li>
-              <li><a href="#contact">Contacto</a></li>
-            </ul>
-          </div><!--/.nav-collapse -->
-          <form action="" class="navbar-form pull-right">
-            <input class="input-small" type="text" placeholder="Usuario">
-            <input class="input-small" type="password" placeholder="Contrase&ntilde;a">
-            <button class="btn" type="submit">Ingresar</button>
-          </form>
+  <body>        
+      <br/><br/><br/>
+      <g:if test="${flash.message}">
+        <div class="alert">
+          <a class="close" data-dismiss='alert'>×</a>
+          <strong>Warning!</strong> ${flash.message}
         </div>
-      </div>
-    </div>
-
-    <div class="container">
-      
-      <br/><br/><br/><br/><br/><br/>
+      </g:if>
+      <g:else>
+        <sec:ifNotLoggedIn>
+          <div class="alert alert-info">
+            INFORMAR SOBRE LAS VENTAJAS DE REGISTRARSE EN LA APP
+          </div>
+        </sec:ifNotLoggedIn>
+      </g:else>
+      <div id="message"></div>
+      <br/><br/><br/>
       <div class="row">        
         <div class="span4 offset4" style="text-align:center">
             <img alt="Salamander" src="${resource(dir: 'images', file: 'salamander.jpeg')}" width="200px" height="100px"/>
@@ -168,11 +156,13 @@
         <g:form name="form-search" action="">
           <div class="row">
             <div class="span12" style="text-align:center">
+              <sec:ifLoggedIn>
                 <a class="btn btn-small btn-info" href="#" name="btnGeo" id="btnGeo">
                   <i class="icon-screenshot icon-white"></i>
                   Mi Ubicación
                 </a>  
-                <g:textField class="input-large search-query span4" name="txtSearch" placeholder="¿Qué necesitas?" />                                                
+              </sec:ifLoggedIn>
+              <g:textField class="input-large search-query span4" name="txtSearch" placeholder="¿Qué necesitas?" />                                                
             </div>        
           </div>
           <div class="row ">
@@ -187,7 +177,7 @@
       </div>
       <div class="row">        
         <div class="span12" style="text-align:center">
-          <a data-toggle="modal" href="#myModal" id="showMyAddress">Sin ubicación</a>
+          <a data-toggle="modal" href="#myModal" id="showMyAddress"></a>
         </div>        
       </div>
       
@@ -205,7 +195,6 @@
         <div class="modal-footer" id="myAddress" style="text-align: center"></div>
       </div>
       <!-- Fin del modal -->
-    </div> <!-- /container -->
     
   </body>
 </html>

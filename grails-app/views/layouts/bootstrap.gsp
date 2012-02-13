@@ -1,68 +1,83 @@
-<%@ page import="org.codehaus.groovy.grails.web.servlet.GrailsApplicationAttributes" %>
+<%@ page import="org.codehaus.groovy.grails.web.servlet.GrailsApplicationAttributes; org.codehaus.groovy.grails.plugins.springsecurity.SpringSecurityUtils" %>
 <!doctype html>
 <html lang="en">
-	<head>
-		<meta charset="utf-8">
-		<title><g:layoutTitle default="${meta(name: 'app.name')}"/></title>
-		<meta name="description" content="">
-		<meta name="author" content="">
+  <head>
+    <meta charset="utf-8">
+    <title><g:layoutTitle default="${meta(name: 'app.name')}"/></title>
+    <meta name="description" content="">
+    <meta name="author" content="">
 
-		<meta name="viewport" content="initial-scale = 1.0">
+    <meta name="viewport" content="initial-scale = 1.0">
 
-		<!-- Le HTML5 shim, for IE6-8 support of HTML elements -->
-		<!--[if lt IE 9]>
-			<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
-		<![endif]-->
+    <!-- Le HTML5 shim, for IE6-8 support of HTML elements -->
+    <!--[if lt IE 9]>
+            <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
 
-		<r:require modules="scaffolding"/>
+    <script type="text/javascript" src="/salamander/static/plugins/jquery-1.7.1/js/jquery/jquery-1.7.1.min.js"></script>
+    <script type="text/javascript" src="${resource(dir: 'js', file: 'bootstrap.min.js')}"></script>
+    
+    <link rel="stylesheet" href="${resource(dir: 'css', file: 'bootstrap.min.css')}" type="text/css">
+    <r:require modules="scaffolding"/>
 
-		<!-- Le fav and touch icons -->
-		<link rel="shortcut icon" href="${resource(dir: 'images', file: 'favicon.ico')}" type="image/x-icon">
-		<link rel="apple-touch-icon" href="${resource(dir: 'images', file: 'apple-touch-icon.png')}">
-		<link rel="apple-touch-icon" sizes="72x72" href="${resource(dir: 'images', file: 'apple-touch-icon-72x72.png')}">
-		<link rel="apple-touch-icon" sizes="114x114" href="${resource(dir: 'images', file: 'apple-touch-icon-114x114.png')}">
+    <!-- Le fav and touch icons -->
+    <link rel="shortcut icon" href="${resource(dir: 'images', file: 'favicon.ico')}" type="image/x-icon">
+    <link rel="apple-touch-icon" href="${resource(dir: 'images', file: 'apple-touch-icon.png')}">
 
-		<g:layoutHead/>
-		<r:layoutResources/>
-	</head>
+    <g:layoutHead/>
+    <r:layoutResources/>
+  </head>
 
-	<body>
+  <body>
 
-		<nav class="navbar navbar-fixed-top">
-			<div class="navbar-inner">
-				<div class="container-fluid">
-					
-					<a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
-						<span class="icon-bar"></span>
-						<span class="icon-bar"></span>
-						<span class="icon-bar"></span>
-					</a>
-					
-					<a class="brand" href="${createLink(uri: '/')}">Grails Twitter Bootstrap</a>
+    <div class="navbar navbar-fixed-top">
+      <div class="navbar-inner">
+        <div class="container">
+          <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </a>
+          <g:link class="brand" action="index">Proyecto Salamander</g:link>
+          <div class="nav-collapse">
+            <ul class="nav">
+              <li class="active">
+                <g:link action="index">Inicio</g:link>
+              </li>
+              <li><a href="#about">Acerca de</a></li>
+              <li><a href="#contact">Contacto</a></li>
+            </ul>
+          </div><!--/.nav-collapse -->
+          <sec:ifLoggedIn>
+            <div class="btn-group pull-right">
+              <a class="btn btn-info" href="#"><sec:username/></a>
+              <a class="btn btn-info dropdown-toggle" data-toggle="dropdown" href="#">
+                <span class="caret"/>
+              </a>
+              <ul class="dropdown-menu">
+                <li><a href="#">Configuración</a></li>
+                <li><a href="#">Ayuda</a></li>
+                <li class="divider"/>
+                <li><g:link controller="logout">Salir</g:link></li>
+              </ul>
+            </div>
+          </sec:ifLoggedIn>
+          <sec:ifNotLoggedIn>
+            <form action="${request.contextPath}${SpringSecurityUtils.securityConfig.apf.filterProcessesUrl}" method='POST' id='loginForm' class="navbar-form pull-right" autocomplete='off'>
+              <input class="input-small" type="text" placeholder="Usuario" name='j_username' id='username'/>
+              <input class="input-small" type="password" placeholder="Contrase&ntilde;a" name='j_password' id='password'/>            
+              <input class="btn" type='submit' id="submit" value='Ingresar'/>
+            </form>          
+          </sec:ifNotLoggedIn>
+        </div>
+      </div>
+    </div>
 
-					<div class="nav-collapse">
-						<ul class="nav">							
-							<li<%= request.forwardURI == "${createLink(uri: '/')}" ? ' class="active"' : '' %>><a href="${createLink(uri: '/')}">Home</a></li>
-							<g:each var="c" in="${grailsApplication.controllerClasses.sort { it.fullName } }">
-								<li<%= c.logicalPropertyName == controllerName ? ' class="active"' : '' %>><g:link controller="${c.logicalPropertyName}">${c.naturalName}</g:link></li>
-							</g:each>
-						</ul>
-					</div>
-				</div>
-			</div>
-		</nav>
+    <div class="container">
+      <g:layoutBody/>
+    </div>
 
-		<div class="container-fluid">
-			<g:layoutBody/>
+    <r:layoutResources/>
 
-			<hr>
-
-			<footer>
-				<p>&copy; Company 2011</p>
-			</footer>
-		</div>
-
-		<r:layoutResources/>
-
-	</body>
+  </body>
 </html>

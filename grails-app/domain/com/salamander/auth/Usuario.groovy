@@ -2,39 +2,47 @@ package com.salamander.auth
 
 class Usuario {
 
-	transient springSecurityService
+    transient springSecurityService
 
-	String username
-	String password
-	boolean enabled
-	boolean accountExpired
-	boolean accountLocked
-	boolean passwordExpired
+    String username
+    String password
+    String fullname
+    String birthdate
+    String gender
+    String email
+    boolean enabled
+    boolean accountExpired
+    boolean accountLocked
+    boolean passwordExpired
 
-	static constraints = {
-		username blank: false, unique: true
-		password blank: false
-	}
+    static constraints = {
+        username blank: false, unique: true
+        password blank: false
+        fullname blank: false
+        birthdate blank: false
+        gender blank: false
+        email email: true
+    }
 
-	static mapping = {
-		password column: '`password`'
-	}
+    static mapping = {
+        password column: '`password`'
+    }
 
-	Set<Rol> getAuthorities() {
-		UsuarioRol.findAllByUsuario(this).collect { it.rol } as Set
-	}
+    Set<Rol> getAuthorities() {
+        UsuarioRol.findAllByUsuario(this).collect { it.rol } as Set
+    }
 
-	def beforeInsert() {
-		encodePassword()
-	}
+    def beforeInsert() {
+        encodePassword()
+    }
 
-	def beforeUpdate() {
-		if (isDirty('password')) {
-			encodePassword()
-		}
-	}
+    def beforeUpdate() {
+        if (isDirty('password')) {
+            encodePassword()
+        }
+    }
 
-	protected void encodePassword() {
-		password = springSecurityService.encodePassword(password)
-	}
+    protected void encodePassword() {
+        password = springSecurityService.encodePassword(password)
+    }
 }
