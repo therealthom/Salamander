@@ -1,7 +1,11 @@
 package com.salamander.auth
 
+import com.salamander.geo.GeoPosition
+
 class Usuario {
 
+    static searchable = true
+    
     transient springSecurityService
 
     String username
@@ -15,6 +19,8 @@ class Usuario {
     boolean accountLocked
     boolean passwordExpired
 
+    static hasMany = [ geoPositions : GeoPosition ]
+    
     static constraints = {
         username blank: false, unique: true
         password blank: false
