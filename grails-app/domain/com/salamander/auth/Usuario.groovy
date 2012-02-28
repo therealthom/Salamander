@@ -11,7 +11,7 @@ class Usuario {
     String username
     String password
     String fullname
-    String birthdate
+    Date birthdate
     String gender
     String email
     boolean enabled
@@ -24,10 +24,10 @@ class Usuario {
     static constraints = {
         username blank: false, unique: true
         password blank: false
-        fullname blank: false
-        birthdate blank: false
-        gender blank: false
-        email email: true
+        fullname nullable:true, blank: true
+        birthdate nullable:true, blank: true
+        gender nullable:true, blank: true
+        email nullable:true, blank:true, email: true
     }
 
     static mapping = {

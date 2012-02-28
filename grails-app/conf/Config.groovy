@@ -96,3 +96,19 @@ log4j = {
 grails.plugins.springsecurity.userLookup.userDomainClassName = 'com.salamander.auth.Usuario'
 grails.plugins.springsecurity.userLookup.authorityJoinClassName = 'com.salamander.auth.UsuarioRol'
 grails.plugins.springsecurity.authority.className = 'com.salamander.auth.Rol'
+
+grails.plugins.springsecurity.ui.register.postRegisterUrl = '/home'
+grails.plugins.springsecurity.ui.register.defaultRoleNames = ['ROLE_USER']
+
+grails {
+    mail {
+        host = "smtp.gmail.com"
+        port = 465
+        username = "proyecto.salamander@gmail.com"
+        password = "VER AGILEZEN, ACTIVIDAD 27"
+        props = ["mail.smtp.auth":"true", 					   
+              "mail.smtp.socketFactory.port":"465",
+              "mail.smtp.socketFactory.class":"javax.net.ssl.SSLSocketFactory",
+              "mail.smtp.socketFactory.fallback":"false"]
+    }
+}

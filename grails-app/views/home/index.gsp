@@ -141,6 +141,8 @@
         <sec:ifNotLoggedIn>
           <div class="alert alert-info">
             INFORMAR SOBRE LAS VENTAJAS DE REGISTRARSE EN LA APP
+            <br/><br/>
+            <g:link controller="register">Registrarse</g:link>
           </div>
         </sec:ifNotLoggedIn>
       </g:else>
