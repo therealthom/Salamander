@@ -38,37 +38,16 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </a>
-          <g:link class="brand" action="index">Proyecto Salamander</g:link>
+          <g:link class="brand" controller="home" action="index">Proyecto Salamander</g:link>
           <div class="nav-collapse">
             <ul class="nav">
               <li class="active">
-                <g:link action="index">Inicio</g:link>
+                <g:link controller="home" action="index">Inicio</g:link>
               </li>
               <li><a href="#about">Acerca de</a></li>
               <li><a href="#contact">Contacto</a></li>
             </ul>
-          </div><!--/.nav-collapse -->
-          <sec:ifLoggedIn>
-            <div class="btn-group pull-right">
-              <a class="btn btn-info" href="#"><sec:username/></a>
-              <a class="btn btn-info dropdown-toggle" data-toggle="dropdown" href="#">
-                <span class="caret"/>
-              </a>
-              <ul class="dropdown-menu">
-                <li><a href="#">Configuración</a></li>
-                <li><a href="#">Ayuda</a></li>
-                <li class="divider"/>
-                <li><g:link controller="logout">Salir</g:link></li>
-              </ul>
-            </div>
-          </sec:ifLoggedIn>
-          <sec:ifNotLoggedIn>
-            <form action="${request.contextPath}${SpringSecurityUtils.securityConfig.apf.filterProcessesUrl}" method='POST' id='loginForm' class="navbar-form pull-right" autocomplete='off'>
-              <input class="input-small" type="text" placeholder="Usuario" name='j_username' id='username'/>
-              <input class="input-small" type="password" placeholder="Contrase&ntilde;a" name='j_password' id='password'/>            
-              <input class="btn" type='submit' id="submit" value='Ingresar'/>
-            </form>          
-          </sec:ifNotLoggedIn>
+          </div><!--/.nav-collapse -->          
         </div>
       </div>
     </div>

@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <meta name="layout" content="bootstrap"/>
+    <meta name="layout" content="default"/>
     <meta charset="utf-8">
     <title>Proyecto Salamander</title>
     <meta name="description" content="">

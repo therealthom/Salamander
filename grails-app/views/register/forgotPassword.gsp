@@ -1,7 +1,7 @@
 <html>
   <head>
     <title><g:message code='spring.security.ui.forgotPassword.title'/></title>
-    <meta name='layout' content='register'/>
+    <meta name='layout' content='simple'/>
   </head>
   <body>
     <p/>
