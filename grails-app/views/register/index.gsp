@@ -16,25 +16,24 @@
           </p>
         </div>
       </div>
-      <div class="span4" style="text-align:center">            
-        <g:form action='register' name='registerForm'>
+      <div class="span4" style="text-align: center">
           <g:if test='${emailSent}'>
             <br/>
             <g:message code='spring.security.ui.register.sent'/>
           </g:if>
-          <g:else>
-            <br/>
-            <table>
-              <tbody>
-              <s2ui:textFieldRow name='username' labelCode='user.username.label' bean="${command}" size='40' labelCodeDefault='Username' value="${command.username}"/>
-              <s2ui:textFieldRow name='email' bean="${command}" value="${command.email}" size='40' labelCode='user.email.label' labelCodeDefault='E-mail'/>              
-              <s2ui:passwordFieldRow name='password' labelCode='user.password.label' bean="${command}" size='40' labelCodeDefault='Password' value="${command.password}"/>
-              <s2ui:passwordFieldRow name='password2' labelCode='user.password2.label' bean="${command}" size='40' labelCodeDefault='Password (again)' value="${command.password2}"/>
-              </tbody>
-            </table>
-            <s2ui:submitButton elementId='create' form='registerForm' messageCode='spring.security.ui.register.submit'/>
+          <g:else>            
+            <g:form name="registerForm" action="register" class="well">
+              <div class="page-header">
+                <h3>¿Eres nuevo? Regístrate</h3>
+              </div>
+              <g:textField name="username" bean="${command}" value="${command.username}" placeholder="Nombre de Usuario" class="span3"/>
+              <g:textField name="fullname" bean="${command}" value="${command.fullname}" placeholder="Nombre Completo" class="span3"/>              
+              <g:textField name="email" bean="${command}" value="${command.email}" placeholder="Correo electrónico" class="span3"/>
+              <g:passwordField name="password" value="" placeholder="Contraseña" class="span3"/>
+              <g:passwordField name="password2" value="" placeholder="Contraseña (Otra vez)" class="span3"/>
+              <g:submitButton name="send" value="Crear Cuenta" class="btn btn-primary btn-medium"/>
+            </g:form>
           </g:else>
-        </g:form>        
       </div>
     </div>
     <script>

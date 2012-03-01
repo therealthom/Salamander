@@ -42,10 +42,9 @@
           <div class="nav-collapse">
             <ul class="nav">
               <li class="active">
-                <g:link controller="home" action="index">Inicio</g:link>
+                <g:link controller="register" action="index">Registrarse</g:link>
               </li>
-              <li><a href="#about">Acerca de</a></li>
-              <li><a href="#contact">Contacto</a></li>
+              <li><a href="#about">Acerca de</a></li>              
             </ul>
           </div><!--/.nav-collapse -->
           <sec:ifLoggedIn>

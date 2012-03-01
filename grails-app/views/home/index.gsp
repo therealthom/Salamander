@@ -132,21 +132,20 @@
   <body>        
       <br/><br/><br/>
       <g:if test="${flash.message}">
-        <div class="alert">
-          <a class="close" data-dismiss='alert'>×</a>
-          <strong>Warning!</strong> ${flash.message}
-        </div>
-      </g:if>
-      <g:else>
-        <sec:ifNotLoggedIn>
-          <div class="alert alert-info">
-            INFORMAR SOBRE LAS VENTAJAS DE REGISTRARSE EN LA APP
-            <br/><br/>
-            <g:link controller="register">Registrarse</g:link>
+        <g:if test="${warning}">
+          <div class="alert">
+            <a class="close" data-dismiss='alert'>×</a>
+            <strong>Warning!</strong> ${flash.message}
           </div>
-        </sec:ifNotLoggedIn>
-      </g:else>
-      <div id="message"></div>
+        </g:if>
+        <g:else>
+          <div class="alert alert-success">
+            <a class="close" data-dismiss='alert'>×</a>
+            <strong>Success!</strong> ${flash.message}
+          </div>
+        </g:else>
+      </g:if>
+      <br/><br/><br/>
       <br/><br/><br/>
       <div class="row">        
         <div class="span4 offset4" style="text-align:center">

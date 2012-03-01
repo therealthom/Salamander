@@ -45,7 +45,6 @@
                 <g:link controller="home" action="index">Inicio</g:link>
               </li>
               <li><a href="#about">Acerca de</a></li>
-              <li><a href="#contact">Contacto</a></li>
             </ul>
           </div><!--/.nav-collapse -->          
         </div>

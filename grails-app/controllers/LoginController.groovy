@@ -114,6 +114,7 @@ class LoginController {
         }
         else {
             flash.message = msg
+            params.warning = true
             redirect controller: "home", action: 'index', params: params
         }
     }
