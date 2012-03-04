@@ -7,7 +7,7 @@ class Usuario {
     static searchable = true
     
     transient springSecurityService
-
+    
     String username
     String password
     String fullname

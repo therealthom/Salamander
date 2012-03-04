@@ -16,7 +16,8 @@ class RegisterController extends grails.plugins.springsecurity.ui.RegisterContro
     def mailService
     def messageSource
     def saltSource
-        
+    def springSecurityUiService
+    
     def index = {
         def copy = [:] + (flash.chainedParams ?: [:])
         copy.remove 'controller'
@@ -168,8 +169,8 @@ class RegisterController extends grails.plugins.springsecurity.ui.RegisterContro
 
         String salt = saltSource instanceof NullSaltSource ? null : registrationCode.username
         RegistrationCode.withTransaction { status ->
-            def user = lookupUserClass().findByUsername(registrationCode.username)
-            user.password = springSecurityUiService.encodePassword(command.password, salt)
+            def user = lookupUserClass().findByUsername(registrationCode.username)            
+            user.password = command.password
             user.save()
             registrationCode.delete()
         }
