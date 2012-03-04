@@ -1,16 +1,12 @@
 package com.salamander
 
-import com.salamander.geo.GeoPosition
+import com.salamander.commons.DatosGenerales
 
-class Sucursal {
+class Sucursal extends DatosGenerales {
 
-    String nombre
-    String descripcion
-    GeoPosition geoposition
+    Empresa empresa
 
     static constraints = {
-        nombre blank:false
-        descripcion blank:false
-        geoposition nullable:true
+        empresa nullable:true
     }
 }

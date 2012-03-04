@@ -1,12 +1,7 @@
 package com.salamander
 
-class Empresa {
+import com.salamander.commons.DatosGenerales
 
-    String nombre
-    String descripcion
-    
-    static constraints = {
-        nombre blank:false
-        descripcion blank:false
-    }
+class Empresa extends DatosGenerales {
+
 }
