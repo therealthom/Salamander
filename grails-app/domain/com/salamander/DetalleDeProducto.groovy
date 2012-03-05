@@ -12,5 +12,5 @@ class DetalleDeProducto {
         producto nullable: false
         existencia blank:false
         precio blank:false
-    }
+    }    
 }

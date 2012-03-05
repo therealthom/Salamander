@@ -13,4 +13,8 @@ class Producto {
         tipoDeProducto nullable:false
         tags blank:true        
     }
+    
+    String toString() {
+        "${nombre}"
+    }
 }

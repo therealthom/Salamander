@@ -6,7 +6,7 @@ class DatosGenerales {
 
     String nombre
     String descripcion
-    String dirección
+    String direccion
     String facebook
     String twitter
     String sitio
@@ -32,5 +32,9 @@ class DatosGenerales {
         pais nullable:false
         imagen nullable:true
         geoposition nullable:true
+    }
+    
+    String toString() {
+        "${nombre}"
     }
 }

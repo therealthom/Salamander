@@ -38,12 +38,19 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </a>
-          <g:link class="brand" controller="home" action="index">Proyecto Salamander</g:link>
+          <g:link class="brand" controller="home" action="index">Salamander</g:link>
           <div class="nav-collapse">
             <ul class="nav">
+              <sec:ifLoggedIn>
               <li class="active">
                 <g:link controller="home" action="index">Inicio</g:link>
               </li>
+              </sec:ifLoggedIn>
+              <sec:ifNotLoggedIn>
+              <li class="active">
+                <g:link controller="register" action="index">Registrarse</g:link>
+              </li>
+              </sec:ifNotLoggedIn>
               <li><a href="#about">Acerca de</a></li>
             </ul>
           </div><!--/.nav-collapse -->          

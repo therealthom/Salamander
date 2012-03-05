@@ -9,4 +9,8 @@ class TipoDeProducto {
         nombre blank:false
         descripcion blank:true
     }
+    
+    String toString() {
+        "${nombre}"
+    }
 }

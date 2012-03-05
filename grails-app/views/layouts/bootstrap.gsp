@@ -74,7 +74,7 @@
               <input class="input-small" type="text" placeholder="Usuario" name='j_username' id='username'/>
               <input class="input-small" type="password" placeholder="Contrase&ntilde;a" name='j_password' id='password'/>            
               <input class="btn" type='submit' id="submit" value='Ingresar'/>
-            </form>
+            </form>          
           </sec:ifNotLoggedIn>
         </div>
       </div>

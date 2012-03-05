@@ -8,5 +8,5 @@ class Sucursal extends DatosGenerales {
 
     static constraints = {
         empresa nullable:true
-    }
+    }    
 }
