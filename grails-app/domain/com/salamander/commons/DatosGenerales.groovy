@@ -14,7 +14,6 @@ class DatosGenerales {
     String telefonoSecundario
     String fax
     String email
-    Pais pais
     byte[] imagen
     GeoPosition geoposition
     
@@ -29,7 +28,6 @@ class DatosGenerales {
         telefonoSecundario blank:true
         fax blank:true
         email blank:true, email:true
-        pais nullable:false
         imagen nullable:true
         geoposition nullable:true
     }

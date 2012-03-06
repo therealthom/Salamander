@@ -4,14 +4,18 @@ class Producto {
 
     String nombre
     String descripcion
-    TipoDeProducto tipoDeProducto
+    Empresa empresa
+    Integer existencia
+    Double precio
     String tags
     
     static constraints = {
         nombre blank:false
         descripcion blank:false
-        tipoDeProducto nullable:false
-        tags blank:true        
+        empresa nullable:false
+        existencia blank:false
+        precio blank:false, scale:2
+        tags blank:false
     }
     
     String toString() {

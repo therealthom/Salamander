@@ -7,6 +7,8 @@ class ImagenDeProducto {
     String descripcion
     byte[] imagen
     
+    static belongsTo = Producto
+    
     static constraints = {
         producto nullable:false
         nombre blank:false

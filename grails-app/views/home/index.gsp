@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <meta name="layout" content="default"/>
+    <meta name="layout" content="bootstrap"/>
     <meta charset="utf-8">
     <title>Proyecto Salamander</title>
     <meta name="description" content="">
@@ -159,7 +159,7 @@
             <div class="span12" style="text-align:center">
               <sec:ifLoggedIn>
                 <a class="btn btn-small btn-info" href="#" name="btnGeo" id="btnGeo">
-                  <i class="icon-screenshot icon-white"></i>
+                  <i class="icon-map-marker icon-white"></i>
                   Mi Ubicación
                 </a>  
               </sec:ifLoggedIn>
